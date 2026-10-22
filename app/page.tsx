@@ -10,7 +10,8 @@ import FindingCardSection from "@/components/FindingCardSection";
 import FrameworksDecodedSection from "@/components/FrameworksDecodedSection";
 import ProofSection from "@/components/ProofSection";
 import PricingPreviewSection from "@/components/PricingPreviewSection";
-import FAQSection, { homeFaqs } from "@/components/FAQSection";
+import FAQSection from "@/components/FAQSection";
+import { homeFaqs } from "@/lib/faqs";
 import WhereWeWorkCTASection from "@/components/WhereWeWorkCTASection";
 
 export default function HomePage() {
