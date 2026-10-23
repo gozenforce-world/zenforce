@@ -11,33 +11,11 @@ import FrameworksDecodedSection from "@/components/FrameworksDecodedSection";
 import ProofSection from "@/components/ProofSection";
 import PricingPreviewSection from "@/components/PricingPreviewSection";
 import FAQSection from "@/components/FAQSection";
-import { homeFaqs } from "@/lib/faqs";
 import WhereWeWorkCTASection from "@/components/WhereWeWorkCTASection";
 
 export default function HomePage() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: homeFaqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a,
-      },
-    })),
-  };
-
   return (
     <>
-      {/* FAQPage JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqSchema),
-        }}
-      />
-
       {/* Section 1: Hero (Format A - Live Attack Object) */}
       <HeroSection />
 

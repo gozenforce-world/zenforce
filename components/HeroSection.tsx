@@ -4,30 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function HeroSection() {
-  const [typedLines, setTypedLines] = useState<string[]>([]);
-
-  const fullLines = [
+  const [typedLines, setTypedLines] = useState<string[]>([
     "$ GET /api/v2/claims/100482",
     "  200 OK   { \"policy_holder\": \"Customer A\", \"diagnosis\": \"...\" }",
     "",
     "$ GET /api/v2/claims/100483",
     "  200 OK   { \"policy_holder\": \"Customer B\", \"diagnosis\": \"...\" }",
     "           ↑ not your data. Same login. One number changed.",
-  ];
-
-  useEffect(() => {
-    let currentLine = 0;
-    const interval = setInterval(() => {
-      if (currentLine < fullLines.length) {
-        setTypedLines((prev) => [...prev, fullLines[currentLine]]);
-        currentLine++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 450);
-
-    return () => clearInterval(interval);
-  }, []);
+  ]);
 
   return (
     <section className="relative overflow-hidden pt-12 pb-20 md:py-24 bg-[#0a0f1c] border-b border-slate-800">
@@ -104,7 +88,7 @@ export default function HeroSection() {
               </div>
 
               {/* Terminal Code Display */}
-              <div className="p-5 space-y-1.5 min-h-[200px] text-slate-300 select-all overflow-x-auto">
+              <div className="p-5 space-y-1.5 min-h-[200px] text-slate-300 select-all overflow-x-auto" suppressHydrationWarning>
                 {typedLines.map((line, idx) => {
                   if (line.startsWith("$")) {
                     return (
@@ -133,10 +117,10 @@ export default function HeroSection() {
               </div>
             </div>
 
-              {/* Caption under the card (HTML text) */}
-              <blockquote className="mt-3.5 p-3 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs text-slate-400 leading-normal">
-                <strong className="text-slate-200">Illustrative.</strong> Changing one number in a URL and getting someone else&apos;s record is called Broken Object Level Authorization (BOLA). It sits at #1 on the OWASP API Security Top 10, and automated scanners routinely miss it. We find it by hand.
-              </blockquote>
+            {/* Caption under the card (HTML text) */}
+            <blockquote className="mt-3.5 p-3 rounded-lg bg-slate-900/60 border border-slate-800/80 text-xs text-slate-400 leading-normal">
+              <strong className="text-slate-200">Illustrative.</strong> Changing one number in a URL and getting someone else&apos;s record is called Broken Object Level Authorization (BOLA). It sits at #1 on the OWASP API Security Top 10, and automated scanners routinely miss it. We find it by hand.
+            </blockquote>
           </div>
         </div>
       </div>

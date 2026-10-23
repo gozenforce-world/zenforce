@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function AnnouncementBar() {
-  const [daysLeft, setDaysLeft] = useState<number>(195);
+  const [daysLeft, setDaysLeft] = useState<number | null>(null);
 
   useEffect(() => {
     const targetDate = new Date("2027-05-13T00:00:00Z").getTime();
@@ -23,7 +23,10 @@ export default function AnnouncementBar() {
         <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse" />
         <span>
           <strong className="text-white font-semibold">DPDP Act:</strong>{" "}
-          <span className="text-red-400 font-bold">{daysLeft} days</span> until full enforcement on 13 May 2027. Penalties go up to ₹250 crore per breach.
+          <span className="text-red-400 font-bold" suppressHydrationWarning>
+            {daysLeft !== null ? `${daysLeft} days` : "Enforcement incoming"}
+          </span>{" "}
+          until full enforcement on 13 May 2027. Penalties go up to ₹250 crore per breach.
         </span>
         <Link
           href="/compliance/dpdp-act/"

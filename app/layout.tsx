@@ -42,67 +42,65 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.zenforce.com/#org",
+      name: "Zenforce",
+      url: "https://www.zenforce.com/",
+      logo: "https://www.zenforce.com/logo.png",
+      description:
+        "Cybersecurity and compliance services company offering VAPT, penetration testing and compliance readiness.",
+      knowsAbout: [
+        "VAPT",
+        "Penetration testing",
+        "API security",
+        "ISO 27001",
+        "SOC 2",
+        "PCI DSS",
+        "DPDP Act",
+        "CERT-In",
+        "SEBI CSCRF",
+      ],
+      areaServed: ["IN", "US", "GB", "AE", "SG", "AU", "CA"],
+      sameAs: [
+        "https://www.linkedin.com/company/zenforce",
+        "https://clutch.co/profile/zenforce",
+        "https://www.crunchbase.com/organization/zenforce",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "hello@zenforce.com",
+        telephone: "+91-9876543210",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.zenforce.com/#website",
+      url: "https://www.zenforce.com/",
+      name: "Zenforce",
+      publisher: { "@id": "https://www.zenforce.com/#org" },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://www.zenforce.com/#org",
-        name: "Zenforce",
-        url: "https://www.zenforce.com/",
-        logo: "https://www.zenforce.com/logo.png",
-        description:
-          "Cybersecurity and compliance services company offering VAPT, penetration testing and compliance readiness.",
-        knowsAbout: [
-          "VAPT",
-          "Penetration testing",
-          "API security",
-          "ISO 27001",
-          "SOC 2",
-          "PCI DSS",
-          "DPDP Act",
-          "CERT-In",
-          "SEBI CSCRF",
-        ],
-        areaServed: ["IN", "US", "GB", "AE", "SG", "AU", "CA"],
-        sameAs: [
-          "https://www.linkedin.com/company/zenforce",
-          "https://clutch.co/profile/zenforce",
-          "https://www.crunchbase.com/organization/zenforce",
-        ],
-        contactPoint: {
-          "@type": "ContactPoint",
-          contactType: "sales",
-          email: "hello@zenforce.com",
-          telephone: "+91-9876543210",
-        },
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.zenforce.com/#website",
-        url: "https://www.zenforce.com/",
-        name: "Zenforce",
-        publisher: { "@id": "https://www.zenforce.com/#org" },
-      },
-    ],
-  };
-
   return (
     <html lang="en" className={`${bricolage.variable} ${hanken.variable}`}>
-      <head>
+      <body className="min-h-screen flex flex-col bg-[#0a0f1c] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
           }}
         />
-      </head>
-      <body className="min-h-screen flex flex-col bg-[#0a0f1c] text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
         <AnnouncementBar />
         <Navbar />
         <main className="flex-grow">{children}</main>
